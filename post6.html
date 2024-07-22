@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post6</title>
+    <link rel="stylesheet" href="stilos.css/styles.css">
+    <link rel="stylesheet" href="stilos.css/post.css">
+</head>
+<body>
+    <header>
+        <h1>Extraños y locos</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="categories.html">Categorías</a></li>
+                <li><a href="about.html">Sobre Mí</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="post">
+            <img src="imaganes/Nuevos y randoms/WhatsApp Image 2024-07-22 at 12.59.06 AM.jpeg" alt="Imagen de la entrada 6">
+            <img src="imaganes/Nuevos y randoms/WhatsApp Image 2024-07-22 at 12.59.06 AM (1).jpeg" alt="Imagen de la entrada 6">
+            <h1>XDDDDD</h1>
+            <img src="imaganes/Nuevos y randoms/WhatsApp Image 2024-07-22 at 12.59.06 AM (2).jpeg" alt="Imagen de la entrada 6">
+            <img src="imaganes/Nuevos y randoms/WhatsApp Image 2024-07-22 at 12.59.06 AM (3).jpeg" alt="Imagen de la entrada 6">
+            <img src="imaganes/Nuevos y randoms/WhatsApp Image 2024-07-22 at 12.59.06 AM (4).jpeg" alt="Imagen de la entrada 6">
+            <img src="imaganes/Nuevos y randoms/WhatsApp Image 2024-07-22 at 12.59.07 AM.jpeg" alt="Imagen de la entrada 6">
+            <h1>optimus cargar grimlock</h1>
+            <img src="imaganes/Nuevos y randoms/WhatsApp Image 2024-07-22 at 12.59.07 AM (3).jpeg" alt="Imagen de la entrada 6">
+            <h1>apaoco si -_o</h1>
+            <img src="imaganes/Nuevos y randoms/WhatsApp Image 2024-07-22 at 12.59.07 AM (1).jpeg" alt="Imagen de la entrada 6">
+            <h1>Una gojoreferencia Xd</h1>
+            <img src="imaganes/Nuevos y randoms/WhatsApp Image 2024-07-22 at 12.59.07 AM (4).jpeg"Imagen de la entrada 6">
+            <h1>NO ME LA PUEDO JALAAAAAAR</h1>
+            <img src="imaganes/Nuevos y randoms/WhatsApp Image 2024-07-22 at 12.59.07 AM (2).jpeg" alt="Imagen de la entrada 6">
+            <h1>arre godzilasaurio</h1>
+
+            <p>Categoría: <span class="category">NUevos y Randoms</span></p>
+            <h1>Extraños y locos</h1>
+            <p>Pero bno llegamos al final no? aca unas fotos de mis mas reccientes adquisisiones y unas randoms que tome durante todo el tiempo que estaba coleccionando, jsjsjs Agradesco a todos los viuwers que se quedaron y vieron hasta el final y espren mas actualizaciones en el futuro un gran saludo y un abrazo furte</p>
+        </div>
+        </section>
+        <section class="comments" id="comments-1">
+            <h3>Comentarios</h3>
+            <div class="comment-list" id="comment-list-1"></div>
+            <form id="comment-form-1">
+                <label for="comment-name-1">Nombre:</label>
+                <input type="text" id="comment-name-1" name="comment-name" required>
+                
+                <label for="comment-text-1">Comentario:</label>
+                <textarea id="comment-text-1" name="comment-text" rows="4" required></textarea>
+                
+                <button type="submit">Enviar Comentario</button>
+            </form>
+        </section>
+    </div>
+     
+           
+    </div>
+</section>
+</main>
+<footer>
+<p>&copy;  2024 Miguel Fernando Sanchez Arce. Hasta que todos seamos uno..</p>
+</footer>
+<script>
+ document.addEventListener('DOMContentLoaded', (event) => {
+            // Función para cargar comentarios desde Local Storage
+            function loadComments(postId) {
+                let comments = JSON.parse(localStorage.getItem(`comments-${postId}`)) || [];
+                let commentList = document.getElementById(`comment-list-${postId}`);
+                commentList.innerHTML = '';
+                comments.forEach((comment, index) => {
+                    let commentElement = document.createElement('div');
+                    commentElement.classList.add('comment');
+                    commentElement.innerHTML = `
+                        <p><strong>${comment.name}:</strong> ${comment.text}</p>
+                        <button class="delete-comment" data-postid="${postId}" data-index="${index}">Eliminar</button>
+                    `;
+                    commentList.appendChild(commentElement);
+                });
+            }
+
+            // Función para guardar comentario en Local Storage
+            function saveComment(postId, name, text) {
+                let comments = JSON.parse(localStorage.getItem(`comments-${postId}`)) || [];
+                comments.push({ name, text });
+                localStorage.setItem(`comments-${postId}`, JSON.stringify(comments));
+            }
+
+            // Función para eliminar comentario de Local Storage
+            function deleteComment(postId, index) {
+                let comments = JSON.parse(localStorage.getItem(`comments-${postId}`));
+                comments.splice(index, 1);
+                localStorage.setItem(`comments-${postId}`, JSON.stringify(comments));
+            }
+
+            // Asigna el evento submit a cada formulario de comentarios
+            document.querySelectorAll('form[id^="comment-form-"]').forEach(form => {
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    let postId = form.id.split('-')[2];
+                    let name = document.getElementById(`comment-name-${postId}`).value;
+                    let text = document.getElementById(`comment-text-${postId}`).value;
+                    saveComment(postId, name, text);
+                    loadComments(postId);
+                    form.reset();
+                });
+            });
+
+            // Asigna el evento click a cada botón de eliminar comentario
+            document.addEventListener('click', (event) => {
+                if (event.target.classList.contains('delete-comment')) {
+                    let postId = event.target.dataset.postid;
+                    let index = event.target.dataset.index;
+                    deleteComment(postId, index);
+                    loadComments(postId);
+                }
+            });
+
+            // Carga comentarios para cada post al cargar la página
+            document.querySelectorAll('div[id^="comment-list-"]').forEach(commentList => {
+                let postId = commentList.id.split('-')[2];
+                loadComments(postId);
+            });
+        });
+    </script>
+</body>
+</html>

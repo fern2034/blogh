@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post3</title>
+    <link rel="stylesheet" href="stilos.css/styles.css">
+    <link rel="stylesheet" href="stilos.css/post.css">
+</head>
+<body>
+    <header>
+        <h1>El poderosisimo grimlock esta en uan dificil decicion</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="categories.html">Categorías</a></li>
+                <li><a href="about.html">Sobre Mí</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="post">
+            <img src="imaganes/WhatsApp Image 2024-07-21 at 9.40.32 PM.jpeg" alt="Imagen de la entrada 3">
+            <img src="imaganes/comida/WhatsApp Image 2024-07-21 at 9.40.32 PM (1).jpeg" alt="Imagen de la entrada 3">
+            <img src="imaganes/comida/WhatsApp Image 2024-07-21 at 9.40.32 PM (2).jpeg" alt="Imagen de la entrada 3">
+            <img src="imaganes/comida/WhatsApp Image 2024-07-21 at 9.42.16 PM.jpeg" alt="Imagen de la entrada 3">
+            <p>Categoría: <span class="category">Comida</span></p>
+            <h1>El poderosisimo grimlock esta en uan dificil decicion..</h1>
+            <p>en esta categoria como dice en el titulo llve a comer a una de mis figuras mas grandes, lo lleve como apenas me lo habia comprado y queria mostrarles amis compañeros de trabajo mi nueva adquisision y pues de ahi nos fuimos a comer y aca el pidiendo lo que va comer</p>
+        </div>
+        </section>
+        <section class="comments" id="comments-1">
+            <h3>Comentarios</h3>
+            <div class="comment-list" id="comment-list-1"></div>
+            <form id="comment-form-1">
+                <label for="comment-name-1">Nombre:</label>
+                <input type="text" id="comment-name-1" name="comment-name" required>
+                
+                <label for="comment-text-1">Comentario:</label>
+                <textarea id="comment-text-1" name="comment-text" rows="4" required></textarea>
+                
+                <button type="submit">Enviar Comentario</button>
+            </form>
+        </section>
+    </div>
+     
+           
+    </div>
+</section>
+</main>
+<footer>
+<p>&copy; 2024 Miguel Fernando Sanchez Arce. Hasta que todos seamos uno.</p>
+</footer>
+<script>
+ document.addEventListener('DOMContentLoaded', (event) => {
+            // Función para cargar comentarios desde Local Storage
+            function loadComments(postId) {
+                let comments = JSON.parse(localStorage.getItem(`comments-${postId}`)) || [];
+                let commentList = document.getElementById(`comment-list-${postId}`);
+                commentList.innerHTML = '';
+                comments.forEach((comment, index) => {
+                    let commentElement = document.createElement('div');
+                    commentElement.classList.add('comment');
+                    commentElement.innerHTML = `
+                        <p><strong>${comment.name}:</strong> ${comment.text}</p>
+                        <button class="delete-comment" data-postid="${postId}" data-index="${index}">Eliminar</button>
+                    `;
+                    commentList.appendChild(commentElement);
+                });
+            }
+
+            // Función para guardar comentario en Local Storage
+            function saveComment(postId, name, text) {
+                let comments = JSON.parse(localStorage.getItem(`comments-${postId}`)) || [];
+                comments.push({ name, text });
+                localStorage.setItem(`comments-${postId}`, JSON.stringify(comments));
+            }
+
+            // Función para eliminar comentario de Local Storage
+            function deleteComment(postId, index) {
+                let comments = JSON.parse(localStorage.getItem(`comments-${postId}`));
+                comments.splice(index, 1);
+                localStorage.setItem(`comments-${postId}`, JSON.stringify(comments));
+            }
+
+            // Asigna el evento submit a cada formulario de comentarios
+            document.querySelectorAll('form[id^="comment-form-"]').forEach(form => {
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    let postId = form.id.split('-')[2];
+                    let name = document.getElementById(`comment-name-${postId}`).value;
+                    let text = document.getElementById(`comment-text-${postId}`).value;
+                    saveComment(postId, name, text);
+                    loadComments(postId);
+                    form.reset();
+                });
+            });
+
+            // Asigna el evento click a cada botón de eliminar comentario
+            document.addEventListener('click', (event) => {
+                if (event.target.classList.contains('delete-comment')) {
+                    let postId = event.target.dataset.postid;
+                    let index = event.target.dataset.index;
+                    deleteComment(postId, index);
+                    loadComments(postId);
+                }
+            });
+
+            // Carga comentarios para cada post al cargar la página
+            document.querySelectorAll('div[id^="comment-list-"]').forEach(commentList => {
+                let postId = commentList.id.split('-')[2];
+                loadComments(postId);
+            });
+        });
+    </script>
+</body>
+</html>

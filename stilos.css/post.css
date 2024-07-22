@@ -1,0 +1,35 @@
+/* Otros estilos previos... */
+
+/* Estilo para los contenedores de los posts */
+.post {
+    padding: 1em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2em;
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+}
+
+/* Estilo para las imágenes en los posts */
+.post img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    display: block; /* Elimina espacio en la parte inferior de la imagen */
+    margin-bottom: 1em;
+}
+
+/* Asegura que el contenedor del post es sensible */
+.post-container {
+    max-width: 100%;
+    overflow: hidden; /* Previene el desbordamiento de contenido */
+}
+
+/* Asegura que las imágenes se ajusten al contenedor */
+.post img {
+    display: block; /* Elimina espacio en la parte inferior */
+    max-width: 100%; /* Asegura que la imagen no exceda el contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 8px; /* Opcional: para bordes redondeados */
+}

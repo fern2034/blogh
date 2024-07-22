@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Blog</title>
+    <link rel="stylesheet" href="stilos.css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mi Blog</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="categories.html">Categorías</a></li>
+                <li><a href="about.html">Sobre Mí</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+                <li class="search">
+                    <input type="text" id="search" placeholder="Buscar...">
+                    <button>Buscar</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="welcome">
+            <img src="imaganes/WhatsApp Image 2024-07-14 at 9.46.55 PM.jpeg" alt="Imagen de bienvenida" class="welcome-img">
+            <h2>Bienvenido a Mi Blog</h2>
+            <p>Explora contenido interesante sobre mis fotos, salidas, colecciones, y mucho más. En este blog como anterioromente mencione mostrare fotos tanto de viajes o mi coleccion que tengo yo junto con fotos randoms o normales !espero te guste¡ </p>
+        </section>
+        <main id="posts-container">
+        <section id="home">
+            <h2>Entradas Recientes</h2>
+            <div class="post" id="post-1">
+                <img src="imaganes/WhatsApp Image 2024-07-21 at 9.02.52 PM.jpeg" alt="Imagen de la entrada 1">
+                <h3>Un tranqilo viaje en la playa</h3>
+                <p>Categoría: <span class="category">viajes</span></p>
+                <p>Un pqueño descansio de la gerra..</p>
+                <a href="post1.html">Leer más</a>
+            </div>
+            <div class="post">
+                <img src="imaganes/WhatsApp Image 2024-07-21 at 9.34.45 PM.jpeg" alt="Imagen de la entrada 2">
+                <h3>Godzilla ataca</h3>
+                <p>Categoría: <span class="category">un descanso</span></p>
+                <p>un relajo en surco...</p>
+                <a href="post2.html">Leer más</a>
+            </div>
+            <div class="post">
+                <img src="imaganes/WhatsApp Image 2024-07-21 at 9.40.32 PM.jpeg" alt="Imagen de la entrada 3">
+                <h3>¿Que puedo pedir?</h3>
+                <p>Categoría: <span class="category">Cocina</span></p>
+                <p>El poderosisimo grimlock esta en uan dificil decicion..</p>
+                <a href="post3.html">Leer más</a>
+            </div>
+            <div class="post">
+                <img src="imaganes/WhatsApp Image 2024-07-22 at 12.25.15 AM.jpeg"Imagen de la entrada 4">
+                <h3>El Patron</h3>
+                <p>Categoría: <span class="category">Custom</span></p>
+                <p>Un pequeño repintado al gran Optimus Prime</p>
+                <a href="post4.html">Leer más</a>
+            </div>
+            <div class="post">
+                <img src="imaganes/WhatsApp Image 2024-07-21 at 11.55.06 PM.jpeg" alt="Imagen de la entrada 5">
+                <h3>No yo soy bee, yo soy bee</h3>
+                <p>Categoría: <span class="category">Los inicios</span></p>
+                <p>Quien es quien :o</p>
+                <a href="post5.html">Leer más</a>
+            </div>
+            <div class="post">
+                <img src="imaganes/WhatsApp Image 2024-07-22 at 12.59.08 AM.jpeg" alt="Imagen de la entrada 6">
+                <h3>Nuevas Adquisisiones y fotos Randoms</h3>
+                <p>Categoría: <span class="category">Nuevos y Randoms</span></p>
+                <p>Muy XD algunas tomas</p>
+                <a href="post6.html">Leer más</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy;  2024 Miguel Fernando Sanchez Arce. Hasta que todos seamos uno.</p>
+    </footer>
+    <script>
+        function buscar() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let posts = document.getElementsByClassName('post');
+            
+            for (let post of posts) {
+                let title = post.getElementsByTagName('h2')[0].innerText.toLowerCase();
+                let content = post.getElementsByTagName('p')[0].innerText.toLowerCase();
+                
+                if (title.includes(input) || content.includes(input)) {
+                    post.style.display = "block";
+                } else {
+                    post.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
